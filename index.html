@@ -16,69 +16,145 @@
   </script>
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      background-color: #f8fafc;
-      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #f8fafc;
+      padding: 20px;
+    }
+
+    .main-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .header-text {
+      text-align: center;
+    }
+
+    .header-text h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .header-text p {
+      font-size: 14px;
+      color: #94a3b8;
     }
 
     .upload-btn {
+      width: 100%;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      padding: 14px 28px;
-      background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
       color: #ffffff;
       font-size: 16px;
       font-weight: 600;
       text-decoration: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
-      transition: all 0.3s ease;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
     }
 
     .upload-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px 0 rgba(79, 70, 229, 0.5);
-      background: linear-gradient(135deg, #4338ca 0%, #2563eb 100%);
+      box-shadow: 0 12px 24px -4px rgba(99, 102, 241, 0.6);
+      background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
     }
 
-    .music-card {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      text-align: center;
+    .upload-btn:active {
+      transform: translateY(0);
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .music-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .music-section label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    audio {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      outline: none;
+    }
+
+    /* Brauzer audio pleyerini quyuq stilga moslash */
+    audio::-webkit-media-controls-panel {
+      background-color: #334155;
     }
   </style>
 </head>
 <body>
 
-  <!-- Google Forms tugmasi -->
-  <a href="https://forms.gle/ntpeoEDk9BF54oqq7" target="_blank" class="upload-btn">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-      <polyline points="17 8 12 3 7 8"/>
-      <line x1="12" y1="3" x2="12" y2="15"/>
-    </svg>
-    Fayl yuklash
-  </a>
+  <div class="main-card">
+    <div class="header-text">
+      <h2>Fayl Platformasi</h2>
+      <p>Hujjatlar yuboring va musiqalarni tinglang</p>
+    </div>
 
-  <!-- Musiqa pleyeri qismi -->
-  <div class="music-card">
-    <h3>Musiqani tinglash:</h3>
-    <!-- src="..." qismiga GitHub'ga yuklagan faylingiz nomini yozasiz -->
-    <audio controls>
-      <source src="musika.mp3" type="audio/mpeg">
-      Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-    </audio>
+    <!-- Google Forms tugmasi -->
+    <a href="https://forms.gle/ntpeoEDk9BF54oqq7" target="_blank" class="upload-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      Fayl yuklash
+    </a>
+
+    <div class="divider"></div>
+
+    <!-- Musiqa pleyeri qismi -->
+    <div class="music-section">
+      <label>Musiqa pleyeri</label>
+      <audio controls>
+        <source src="Isloh.mp3" type="audio/mpeg">
+        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
+      </audio>
+    </div>
   </div>
 
 </body>
