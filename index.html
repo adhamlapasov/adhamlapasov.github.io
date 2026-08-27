@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fayl Yuborish</title>
+  
+  <script>
+    // Saytga kirish paroli (shuni o'zingiz xohlagan parolga o'zgartiring)
+    const MAXFIY_PAROL = "7777";
+
+    // Sahifa yuklanishidan oldin parol so'raladi
+    let kiritilganParol = prompt("Saytga kirish uchun parolni kiriting:");
+
+    if (kiritilganParol !== MAXFIY_PAROL) {
+      alert("Parol noto'g'ri! Kirish rad etildi.");
+      // Parol xato bo'lsa, foydalanuvchini Google'ga yuboradi
+      window.location.href = "https://google.com";
+    }
+  </script>
+
   <style>
     body {
       margin: 0;
