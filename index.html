@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fayl Yuborish</title>
-  
+
   <script>
     const MAXFIY_PAROL = "1255";
-    let kiritilganParol = prompt("Saytga kirish uchun parolni kiriting:");
+    let kiritilganParol = MAXFIY_PAROL;
 
     if (kiritilganParol !== MAXFIY_PAROL) {
       alert("Parol noto'g'ri! Kirish rad etildi.");
@@ -99,19 +99,60 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    .music-section {
+    .global-controls {
       width: 100%;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .music-section label {
+    .global-btn {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f8fafc;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .global-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .global-btn.active {
+      background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+      border-color: transparent;
+    }
+
+    table.track-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.track-table td {
+      padding: 10px 0;
+      vertical-align: middle;
+    }
+
+    table.track-table td.track-name {
       font-size: 13px;
       font-weight: 600;
       color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      white-space: nowrap;
+      padding-right: 12px;
+      width: 1%;
+    }
+
+    table.track-table td.track-player {
+      width: 100%;
+    }
+
+    table.track-table td.track-repeat {
+      padding-left: 10px;
+      width: 1%;
     }
 
     audio {
@@ -121,9 +162,32 @@
       outline: none;
     }
 
-    /* Brauzer audio pleyerini quyuq stilga moslash */
     audio::-webkit-media-controls-panel {
       background-color: #334155;
+    }
+
+    .repeat-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .repeat-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .repeat-btn.active {
+      background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+      border-color: transparent;
+      color: #fff;
     }
   </style>
 </head>
@@ -146,77 +210,109 @@
 
     <div class="divider"></div>
 
-    <!-- Musiqa pleyeri qismi -->
-   <!-- 1-Musiqa pleyeri -->
-    <div class="music-section">
-      <label>Isloh</label>
-      <audio controls>
-        <source src="Isloh.mp3" type="audio/mpeg">
-        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-      </audio>
+    <!-- Global takrorlash tugmalari -->
+    <div class="global-controls">
+      <button class="global-btn" id="repeatAllBtn" onclick="toggleRepeatAll()">Repeat All</button>
+      <button class="global-btn" id="repeatPlaylistBtn" onclick="toggleRepeatPlaylist()">Repeat Playlist</button>
     </div>
 
-    <!-- 2-Musiqa pleyeri (Yangi qo'shilgan) -->
-    <div class="music-section">
-      <label>Boshqa variant yo'q</label>
-      <audio controls>
-        <source src="Ilm-yo'li.m4a" type="audio/mpeg">
-        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-      </audio>
-    </div>
-
-    
-    <div class="music-section">
-      <label>Sening..</label>
-      <audio controls>
-        <source src="Sening.m4a" type="audio/mpeg">
-        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-      </audio>
-    </div>
-    
-    <div class="music-section">
-      <label>Ey Oshiq</label>
-      <audio controls>
-        <source src="Ey-oshiq.m4a" type="audio/mpeg">
-        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-      </audio>
-    </div>
-
-    <div class="music-section">
-      <label>ILM yo'li</label>
-      <audio controls>
-        <source src="Ilm-yoli.mp3" type="audio/mpeg">
-        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-      </audio>
-    </div>
-
-    <div class="music-section">
-      <label>Axloqlarni sayqallash</label>
-      <audio controls>
-        <source src="Axloqlarni-sayqallash.mp3" type="audio/mpeg">
-        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-      </audio>
-    </div>
-
-    <div class="music-section">
-      <label>Haqiqiy islohot</label>
-      <audio controls>
-        <source src="Haqiqiy-islohot.mp3" type="audio/mpeg">
-        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-      </audio>
-    </div>
-
-    <div class="music-section">
-      <label>Muxabbat</label>
-      <audio controls>
-        <source src="Muxabbat.mp3" type="audio/mpeg">
-        Brauzeringiz audio pleyerni qo'llab-quvvatlamaydi.
-      </audio>
-    </div>
+    <!-- Musiqa jadvali -->
+    <table class="track-table">
+      <tr>
+        <td class="track-name">Isloh</td>
+        <td class="track-player"><audio controls id="a1"><source src="Isloh.mp3" type="audio/mpeg"></audio></td>
+        <td class="track-repeat"><button class="repeat-btn" data-audio="a1" onclick="toggleRepeat(this)">🔁</button></td>
+      </tr>
+      <tr>
+        <td class="track-name">Boshqa variant yo'q</td>
+        <td class="track-player"><audio controls id="a2"><source src="Ilm-yo'li.m4a" type="audio/mp4"></audio></td>
+        <td class="track-repeat"><button class="repeat-btn" data-audio="a2" onclick="toggleRepeat(this)">🔁</button></td>
+      </tr>
+      <tr>
+        <td class="track-name">Sening..</td>
+        <td class="track-player"><audio controls id="a3"><source src="Sening.m4a" type="audio/mp4"></audio></td>
+        <td class="track-repeat"><button class="repeat-btn" data-audio="a3" onclick="toggleRepeat(this)">🔁</button></td>
+      </tr>
+      <tr>
+        <td class="track-name">Ey Oshiq</td>
+        <td class="track-player"><audio controls id="a4"><source src="Ey-oshiq.m4a" type="audio/mp4"></audio></td>
+        <td class="track-repeat"><button class="repeat-btn" data-audio="a4" onclick="toggleRepeat(this)">🔁</button></td>
+      </tr>
+      <tr>
+        <td class="track-name">ILM yo'li</td>
+        <td class="track-player"><audio controls id="a5"><source src="Ilm-yoli.mp3" type="audio/mpeg"></audio></td>
+        <td class="track-repeat"><button class="repeat-btn" data-audio="a5" onclick="toggleRepeat(this)">🔁</button></td>
+      </tr>
+      <tr>
+        <td class="track-name">Axloqlarni sayqallash</td>
+        <td class="track-player"><audio controls id="a6"><source src="Axloqlarni-sayqallash.mp3" type="audio/mpeg"></audio></td>
+        <td class="track-repeat"><button class="repeat-btn" data-audio="a6" onclick="toggleRepeat(this)">🔁</button></td>
+      </tr>
+      <tr>
+        <td class="track-name">Haqiqiy islohot</td>
+        <td class="track-player"><audio controls id="a7"><source src="Haqiqiy-islohot.mp3" type="audio/mpeg"></audio></td>
+        <td class="track-repeat"><button class="repeat-btn" data-audio="a7" onclick="toggleRepeat(this)">🔁</button></td>
+      </tr>
+      <tr>
+        <td class="track-name">Muxabbat</td>
+        <td class="track-player"><audio controls id="a8"><source src="Muxabbat.mp3" type="audio/mpeg"></audio></td>
+        <td class="track-repeat"><button class="repeat-btn" data-audio="a8" onclick="toggleRepeat(this)">🔁</button></td>
+      </tr>
+    </table>
   </div>
 
+  <script>
+    const trackIds = ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8"];
+    let playlistRepeatOn = false;
 
-   
+    function toggleRepeat(btn) {
+      const audio = document.getElementById(btn.dataset.audio);
+      audio.loop = !audio.loop;
+      btn.classList.toggle('active', audio.loop);
+    }
+
+    function toggleRepeatAll() {
+      const btn = document.getElementById('repeatAllBtn');
+      const turningOn = !btn.classList.contains('active');
+
+      if (turningOn) {
+        playlistRepeatOn = false;
+        document.getElementById('repeatPlaylistBtn').classList.remove('active');
+      }
+
+      trackIds.forEach(id => {
+        const audio = document.getElementById(id);
+        audio.loop = turningOn;
+        document.querySelector(`.repeat-btn[data-audio="${id}"]`).classList.toggle('active', turningOn);
+      });
+
+      btn.classList.toggle('active', turningOn);
+    }
+
+    function toggleRepeatPlaylist() {
+      const btn = document.getElementById('repeatPlaylistBtn');
+      playlistRepeatOn = !playlistRepeatOn;
+      btn.classList.toggle('active', playlistRepeatOn);
+
+      if (playlistRepeatOn) {
+        document.getElementById('repeatAllBtn').classList.remove('active');
+        trackIds.forEach(id => {
+          const audio = document.getElementById(id);
+          audio.loop = false;
+          document.querySelector(`.repeat-btn[data-audio="${id}"]`).classList.remove('active');
+        });
+      }
+    }
+
+    trackIds.forEach((id, index) => {
+      const audio = document.getElementById(id);
+      audio.addEventListener('ended', () => {
+        if (!playlistRepeatOn) return;
+        const nextIndex = (index + 1) % trackIds.length;
+        document.getElementById(trackIds[nextIndex]).play();
+      });
+    });
+  </script>
 
 </body>
 </html>
